@@ -1,0 +1,190 @@
+/* ─────────────────────────────────────────
+   PROJETOS
+───────────────────────────────────────── */
+.projetos {
+  padding: var(--section-padding);
+  position: relative;
+}
+
+.projetos__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+/* ─── Card ─── */
+.project-card {
+  position: relative;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  overflow: hidden;
+}
+
+/* Linha neon percorrendo a borda ao hover */
+.project-card::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 8px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--neon-blue) 40%,
+    var(--neon-cyan) 60%,
+    transparent 100%
+  );
+  background-size: 300% 100%;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 0;
+  animation: border-run 2.5s linear infinite paused;
+}
+
+.project-card:hover::before {
+  opacity: 1;
+  animation-play-state: running;
+}
+
+@keyframes border-run {
+  0%   { background-position:  200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Fundo sobre a borda animada */
+.project-card::after {
+  content: '';
+  position: absolute;
+  inset: 1px;
+  background: var(--bg-card);
+  border-radius: 7px;
+  z-index: 0;
+}
+
+.project-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.project-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* Card destaque — maior */
+.project-card--highlight {
+  grid-column: span 1;
+  border-color: rgba(0, 170, 255, 0.3);
+  background: linear-gradient(135deg, #111827 0%, #0d1117 100%);
+}
+
+/* Badge "destaque" */
+.project-card__featured {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--neon-cyan);
+  border: 1px solid var(--neon-cyan);
+  padding: 2px 8px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  background: rgba(0, 255, 242, 0.05);
+  z-index: 2;
+}
+
+/* ─── Topo do card ─── */
+.project-card__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.project-card__folder {
+  width: 36px;
+  height: 36px;
+  color: var(--neon-blue);
+}
+
+.project-card__links {
+  display: flex;
+  gap: 14px;
+}
+
+.project-card__links a {
+  color: var(--text-muted);
+  transition: var(--transition);
+  display: flex;
+}
+
+.project-card__links a:hover {
+  color: var(--neon-blue);
+  filter: drop-shadow(0 0 6px var(--neon-glow));
+}
+
+.project-card__links svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* ─── Conteúdo ─── */
+.project-card__title {
+  font-family: var(--font-mono);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  transition: color 0.3s ease;
+}
+
+.project-card:hover .project-card__title {
+  color: var(--neon-blue);
+  text-shadow: 0 0 10px var(--neon-glow-sm);
+}
+
+.project-card__desc {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+  flex: 1;
+}
+
+/* ─── Stack ─── */
+.project-card__stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: auto;
+}
+
+.project-card__tech {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--neon-blue);
+  opacity: 0.8;
+}
+
+.project-card__tech::before {
+  content: '#';
+  margin-right: 2px;
+  opacity: 0.5;
+}
+
+/* ─── Responsivo ─── */
+@media (max-width: 900px) {
+  .projetos__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .projetos__grid {
+    grid-template-columns: 1fr;
+  }
+}

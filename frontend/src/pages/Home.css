@@ -1,0 +1,246 @@
+/* ─────────────────────────────────────────
+   HERO
+───────────────────────────────────────── */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 0 5%;
+}
+
+/* ─── Canvas matrix ─── */
+.hero__matrix {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0.6;
+}
+
+/* ─── Conteúdo ─── */
+.hero__content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 40px;
+  animation: hero-fadein 1s ease forwards;
+}
+
+@keyframes hero-fadein {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+
+/* ─── Janela terminal ─── */
+.hero__terminal {
+  background: rgba(13, 17, 23, 0.85);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  box-shadow:
+    0 0 0 1px rgba(0, 170, 255, 0.05),
+    0 20px 60px rgba(0, 0, 0, 0.6),
+    0 0 40px rgba(0, 170, 255, 0.05);
+  min-width: 520px;
+  transition: box-shadow 0.3s ease;
+}
+
+.hero__terminal:hover {
+  box-shadow:
+    0 0 0 1px var(--border),
+    0 20px 60px rgba(0, 0, 0, 0.6),
+    0 0 60px rgba(0, 170, 255, 0.1);
+}
+
+/* Barra de título */
+.hero__terminal-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border-bottom: 1px solid var(--border);
+}
+
+.hero__dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.hero__dot--red    { background: #ff5f57; }
+.hero__dot--yellow { background: #febc2e; }
+.hero__dot--green  { background: #28c840; }
+
+.hero__terminal-title {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-left: 8px;
+}
+
+/* Corpo do terminal */
+.hero__terminal-body {
+  padding: 28px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.hero__line {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: 12px;
+}
+
+.hero__line:first-child {
+  margin-top: 0;
+}
+
+.hero__prompt {
+  color: var(--neon-blue);
+  margin-right: 8px;
+}
+
+/* Nome com glitch */
+.hero__name {
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-family: var(--font-mono);
+  font-weight: 700;
+  color: var(--text-primary);
+  text-shadow: 0 0 30px rgba(0, 170, 255, 0.3);
+  margin: 4px 0;
+}
+
+/* Role com typing */
+.hero__role {
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  color: var(--neon-cyan);
+  text-shadow: 0 0 10px rgba(0, 255, 242, 0.4);
+  min-height: 1.5rem;
+  margin: 4px 0;
+}
+
+.hero__blink {
+  animation: blink 1s step-end infinite;
+  color: var(--neon-cyan);
+  margin-left: 2px;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+/* Status */
+.hero__status {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  color: #28c840;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+  text-shadow: 0 0 8px rgba(40, 200, 64, 0.5);
+}
+
+.hero__status-dot {
+  width: 8px;
+  height: 8px;
+  background: #28c840;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #28c840;
+  animation: pulse-green 2s ease infinite;
+}
+
+@keyframes pulse-green {
+  0%, 100% { box-shadow: 0 0 4px #28c840; }
+  50%       { box-shadow: 0 0 14px #28c840, 0 0 24px rgba(40,200,64,0.4); }
+}
+
+/* ─── Botões CTA ─── */
+.hero__cta {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.hero__btn-outline {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  border: 1px solid rgba(255,255,255,0.1);
+  padding: 12px 28px;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.hero__btn-outline:hover {
+  color: var(--text-primary);
+  border-color: rgba(255,255,255,0.3);
+}
+
+/* ─── Scroll indicator ─── */
+.hero__scroll {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  z-index: 1;
+}
+
+.hero__scroll-label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.hero__scroll-line {
+  width: 1px;
+  height: 50px;
+  background: linear-gradient(to bottom, var(--neon-blue), transparent);
+  animation: scroll-pulse 2s ease infinite;
+}
+
+@keyframes scroll-pulse {
+  0%   { transform: scaleY(0); transform-origin: top; opacity: 1;   }
+  100% { transform: scaleY(1); transform-origin: top; opacity: 0.3; }
+}
+
+/* ─── Responsivo ─── */
+@media (max-width: 600px) {
+  .hero__terminal {
+    min-width: unset;
+    width: 100%;
+  }
+
+  .hero__terminal-body {
+    padding: 20px 18px;
+  }
+
+  .hero__cta {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .hero__cta .btn-primary,
+  .hero__btn-outline {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+}
