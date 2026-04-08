@@ -64,7 +64,7 @@ function Contato() {
     setForm(prev => ({ ...prev, [e.target.name]: e.target.value }))
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const { nome, email, mensagem } = form
     const text = `Olá Marlon!%0ANome: ${nome}%0AEmail: ${email}%0AMensagem: ${mensagem}`
@@ -89,8 +89,7 @@ function Contato() {
               <a
                 key={item.label}
                 href={item.href}
-                target={item.href !== '#' ? '_blank' : undefined}
-                rel="noreferrer"
+                {...(item.href !== '#' ? { target: '_blank', rel: 'noreferrer' } : {})}
                 className="contato__item"
               >
                 <span className="contato__item-icon">{item.icon}</span>

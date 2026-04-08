@@ -292,8 +292,12 @@ code, pre {
 /* ─────────────────────────────────────────
    CURSOR CUSTOMIZADO
 ───────────────────────────────────────── */
-* {
+body, a, button, [role="button"] {
   cursor: none;
+}
+
+input, textarea, select {
+  cursor: text;
 }
 
 .cursor {

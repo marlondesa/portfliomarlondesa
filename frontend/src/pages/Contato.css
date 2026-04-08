@@ -37,7 +37,6 @@
   border-radius: 8px;
   text-decoration: none;
   transition: var(--transition);
-  group: true;
 }
 
 .contato__item:hover {
